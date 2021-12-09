@@ -9,6 +9,10 @@
         <button id="get">Get</button>
         <button id="post">Post</button>
         <button id="delete">Delete</button>
+        <p>DELETE BY ID: <input type="text" id="id2Delete" /></p>
+        <p>latitude: <input type="text" id="latitude" /></p>
+        <p>longitude: <input type="text" id="longitude" /></p>
+        <div id="res"></div>
         <script>
             const URL = "/locations";
 
@@ -25,17 +29,21 @@
                     .join("");
             };
             const postLocation = async (location) => {
+                let la = document.getElementById("latitude").value;
+                let lo = document.getElementById("longitude").value;
                 const rawResponse = await fetch(URL, {
                     method: "POST",
                     headers: {
                         Accept: "application/json",
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({ latitude: 66, longitude: 77 }),
+                    body: JSON.stringify({ latitude: la, longitude: lo }),
                 });
+                //document.getElementById("res").innerHTML = await rawResponse.json();
             };
             const deleteLocation = async (id) => {
-                const rawResponse = await fetch(URL + "/2", {
+                let id2Delete = document.getElementById("id2Delete").value;
+                const rawResponse = await fetch(URL + "/" + id2Delete, {
                     method: "DELETE",
                     headers: {
                         Accept: "application/json",
@@ -43,6 +51,7 @@
                     },
                     body: JSON.stringify(),
                 });
+                //document.getElementById("res").innerHTML = await rawResponse.json();
             };
 
             window.addEventListener("load", () => {
