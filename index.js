@@ -1,14 +1,19 @@
 const express = require("express");
 const app = express();
-
-const http = require("http");
-
 const port = process.env.PORT || 8080;
 
-const server = http.createServer((request, response) => {
-    response.end("Mikki hiiri");
+const db = [
+    { id: 1, name: "Tuomas" },
+    { id: 2, name: "Antti" },
+    { id: 3, name: "Sanna" },
+];
+
+app.use(express.static("public"));
+
+app.get("/endpoint", (req, res) => {
+    res.send(db);
 });
 
-server.listen(port, () =>
-    console.log(`Server listening port ${server.address().port}`)
-);
+app.listen(port, () => {
+    console.log(`Listening at http://localhost:${port}`);
+});
