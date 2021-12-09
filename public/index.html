@@ -1,25 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <meta charset="utf-8" />
+        <title>HTML5 Page</title>
     </head>
     <body>
         <ul></ul>
+        <button id="get">Get</button>
+        <button id="post">Post</button>
+        <button id="delete">Delete</button>
         <script>
-            const fetchIt = async () => {
-                let js = await fetch("/endpoint");
+            const URL = "/locations";
+
+            const getLocation = async () => {
+                let js = await fetch(URL);
                 let data = await js.json();
-                console.log(data);
 
                 let ul = document.querySelector("ul");
                 ul.innerHTML = data
-                    .map((point) => `<li>${point.name}</li>`)
+                    .map(
+                        (point) =>
+                            `<li>latitude: ${point.latitude}, longitude: ${point.longitude}</li>`
+                    )
                     .join("");
             };
-            fetchIt();
+            const postLocation = async (location) => {
+                const rawResponse = await fetch(URL, {
+                    method: "POST",
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ latitude: 66, longitude: 77 }),
+                });
+            };
+            const deleteLocation = async (id) => {
+                const rawResponse = await fetch(URL + "/2", {
+                    method: "DELETE",
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(),
+                });
+            };
+
+            window.addEventListener("load", () => {
+                document
+                    .querySelector("#get")
+                    .addEventListener("click", getLocation);
+                document
+                    .querySelector("#post")
+                    .addEventListener("click", () =>
+                        postLocation({ lat: 60, lon: 60 })
+                    );
+                document
+                    .querySelector("#delete")
+                    .addEventListener("click", () => deleteLocation(1));
+            });
         </script>
     </body>
 </html>

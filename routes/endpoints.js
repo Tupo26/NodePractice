@@ -12,6 +12,12 @@ endpoints.use(express.json());
 let regex = new RegExp("/[a-z]/");
 let regex1 = /[a-z]/;
 
+endpoints.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    console.log("Time:", Date.now());
+    next();
+});
+
 // http://localhost:8080/endpoint/1
 endpoints.get("/:id([0-9]+)", (req, res) => {
     console.log(req.params.id);

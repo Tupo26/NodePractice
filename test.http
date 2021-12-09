@@ -1,1 +1,37 @@
-http://localhost:8080/
+GET http://localhost:8080/
+###
+
+GET http://localhost:8080/endpoint/
+###
+
+GET http://localhost:8080/endpoint/1
+###
+
+DELETE http://localhost:8080/endpoint/1
+###
+
+POST http://localhost:8080/endpoint/
+Content-Type: application/json
+
+{
+    "name": "Ilona"
+}
+###
+
+GET http://localhost:8080/locations/
+###
+
+GET http://localhost:8080/locations/2
+###
+
+DELETE http://localhost:8080/locations/1
+###
+
+POST http://localhost:8080/locations/
+Content-Type: application/json
+
+{
+    "latitude": 66, "longitude": 77
+}
+
+

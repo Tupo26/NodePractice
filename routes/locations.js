@@ -10,6 +10,12 @@ let db = [
 
 locations.use(express.json());
 
+locations.use((req, res, next) => {
+    //res.header("Access-Control-Allow-Origin", "*");
+    console.log("Time:", Date.now());
+    next();
+});
+
 // http://localhost:8080/locations/
 locations.get("/", (req, res) => {
     res.send(db);
