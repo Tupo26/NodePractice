@@ -1,0 +1,25 @@
+{
+    "name": "NodePractice",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Tupo26/NodePractice.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Tupo26/NodePractice/issues"
+    },
+    "homepage": "https://github.com/Tupo26/NodePractice#readme",
+    "dependencies": {
+        "express": "^4.17.1",
+        "http": "0.0.1-security"
+    }
+}
